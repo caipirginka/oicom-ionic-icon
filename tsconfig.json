@@ -14,7 +14,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "oicom-icon": [
+        "dist/oicom-icon/oicom-icon",
+        "dist/oicom-icon",
+        "dist/oicom-icon/oicom-icon",
+        "dist/oicom-icon"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

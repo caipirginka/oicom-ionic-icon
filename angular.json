@@ -2,5 +2,46 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1, 
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "oicom-icon": {
+      "projectType": "library",
+      "root": "projects/oicom-icon",
+      "sourceRoot": "projects/oicom-icon/src",
+      "prefix": "oicom",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/oicom-icon/tsconfig.lib.json",
+            "project": "projects/oicom-icon/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/oicom-icon/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/oicom-icon/src/test.ts",
+            "tsConfig": "projects/oicom-icon/tsconfig.spec.json",
+            "karmaConfig": "projects/oicom-icon/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/oicom-icon/tsconfig.lib.json",
+              "projects/oicom-icon/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "oicom-icon"
 }
