@@ -28,7 +28,9 @@ Make it available to link from other projects:
 
 Enter the root directory of another project and create a link:
 
-    npm link oicom-ionic-icon
+    npm link oicom-icon
+
+Note that using __sudo__ may be neccessary to run __npm link__ (both times).
 
 ## Usage
 
