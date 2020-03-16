@@ -5,7 +5,30 @@ This is for a Ionic/Angular project, using Ionicons 5.
 
 ## Installation
 
-TDB
+### As local dev
+
+Clone this repository.
+
+Enter the directory it was cloned into:
+
+    cd oicom-ionic-icon
+
+Install dependencies:
+
+    npm install
+
+Build it:
+
+    npx ng build
+
+Make it available to link from other projects:
+
+    cd dist/oicom-icon/
+    npm link
+
+Enter the root directory of another project and create a link:
+
+    npm link oicom-ionic-icon
 
 ## Usage
 
