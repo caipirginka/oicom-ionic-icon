@@ -1,27 +1,59 @@
 # OicomIonicIcon
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+Avoid the hundreds of .svg files of Ionicons.
+This is for a Ionic/Angular project, using Ionicons 5.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+TDB
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Remove the following lines from the __angular.json__ file:
 
-## Build
+    ,
+    {
+        "glob": "**/*.svg",
+        "input": "node_modules/ionicons/dist/ionicons/svg",
+        "output": "./svg"
+    }
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Add the following to the __app.module.ts__ file:
 
-## Running unit tests
+    import { OicomIconModule } from 'oicom-icon';
+    ...
+    @NgModule({
+    ...
+    imports: [
+        ...
+        OicomIconModule
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Add the following to the __app.component.ts__ file:
 
-## Running end-to-end tests
+    import { OicomIconService } from 'oicom-icon';
+    ...
+    export class AppComponent {
+    constructor(
+        ...
+        private iconService: OicomIconService,
+    ...
+        this.platform.ready().then(() => {
+            ...
+            const icons = [
+                'arrow-back', 'close', 'search',
+                'chevron-back', 'chevron-forward', 'close-circle',
+                'call', 'globe', 'heart', 'mail', 'navigate', 'person', 'settings', 'share', 'share-social'];
+        this.iconService.addIcons(icons, 'outline');
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+This list of icon names is just an example.
+All icon names used through the App, as __ion-icon__ tags must be added, plus any icon name used by other components,
+such as __ion-back-button__ and the like.
+Keep an eye on the error log for any missing .svg file error and add the missing filename (without the extension) to this list.
 
-## Further help
+The second parameter to the __addIcons__ method, 'outline' in this example, is the preferred icon style.
+By specifying this parameter, the corresponding icon variation will be used, even if not specified.
+This way is easy to experiment with different icon styles, comparing filled, with outline, for example,
+without having to go through the App code and substitute all icon names.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The base icon style is always available as __basename-fill__.
+This must be used when explicit filled vs outline variation is needed (i.e. empty/full heart icon for favorites).
