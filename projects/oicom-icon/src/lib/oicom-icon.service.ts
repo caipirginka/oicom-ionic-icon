@@ -29,4 +29,19 @@ export class OicomIconService {
     });
   }
 
+  public addCustomIcons(icons: string[], suffix?: '' | 'fill' | 'outline' | 'sharp',
+    assetsPath: string = 'assets/icons/') {
+    ioniconsAddIcons({
+      ...icons.reduce((acc, name) => {
+        if (suffix)
+          name = `${name}-${suffix}`;
+
+        return {
+          ...acc,
+          ...{ [name]: `${assetsPath}${name}.svg` }
+        }
+      }, {}),
+    });
+  };
+
 }
